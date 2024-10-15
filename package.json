@@ -4,10 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "deno task dev:api & deno task dev:appshell & deno task dev:vite",
+    "dev": "deno task dev:api & deno task dev:app & deno task dev:vite",
     "dev:api": "deno run --allow-env --allow-read --allow-net api/main.ts",
     "dev:vite": "deno run -A npm:vite",
-    "dev:appshell": "deno run --allow-ffi --allow-env --allow-read --allow-net appshell/appshell.ts",
+    "dev:app": "deno run --allow-ffi --allow-env --allow-read --allow-net app/shell.ts",
     "build": "tsc -b && vite build",
     "serve": "deno task build && deno task dev:api",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
