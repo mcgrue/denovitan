@@ -3,6 +3,7 @@ import { oakCors } from "@tajpouria/cors";
 import data from "./data.json" with { type: "json" };
 import routeStaticFilesFrom from "./util/routeStaticFilesFrom.ts";
 
+const port = 8000;
 const router = new Router();
 
 router.get("/api/dinosaurs", (context) => {
@@ -30,4 +31,6 @@ app.use(routeStaticFilesFrom([
   `${Deno.cwd()}/public`,
 ]));
 
-await app.listen({ port: 8000 });
+console.log(`starting Backend Server running on http://localhost:${port}`);
+await app.listen({ port: port });
+
