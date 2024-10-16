@@ -11,5 +11,4 @@
   "compilerOptions": {
     "jsx": "react-jsx",
   },
-  
 }
