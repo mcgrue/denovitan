@@ -1,5 +1,5 @@
 // @ts-ignore: ts(6133)
-import React from "react";
+import _React from "react";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Dino } from "../types.ts";
