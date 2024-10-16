@@ -1,5 +1,5 @@
 // @ts-ignore: ts(6133)
-import React from 'react';
+import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Index from "./pages/index.tsx";
 import Dinosaur from "./pages/Dinosaur.tsx";
