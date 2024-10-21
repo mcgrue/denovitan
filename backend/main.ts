@@ -10,6 +10,8 @@ router.get("/api/dinosaurs", (context) => {
   context.response.body = data;
 });
 
+router.get("/api/dinosaurs/dredmor", (context) => context.response.body = data);
+
 router.get("/api/dinosaurs/:dinosaur", (context) => {
   if (!context?.params?.dinosaur) {
     context.response.body = "No dinosaur name provided.";
@@ -33,4 +35,3 @@ app.use(routeStaticFilesFrom([
 
 console.log(`starting Backend Server running on http://localhost:${port}`);
 await app.listen({ port: port });
-
