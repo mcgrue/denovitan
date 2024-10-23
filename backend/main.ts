@@ -1,28 +1,12 @@
 import { Application, Router } from "@oak/oak";
 import { oakCors } from "@tajpouria/cors";
-import data from "./data.json" with { type: "json" };
 import routeStaticFilesFrom from "./util/routeStaticFilesFrom.ts";
 
 const port = 8000;
 const router = new Router();
 
-router.get("/api/dinosaurs", (context) => {
-  context.response.body = data;
-});
-
-router.get("/api/dinosaurs/dredmor", (context) => context.response.body = data);
-
-router.get("/api/dinosaurs/:dinosaur", (context) => {
-  if (!context?.params?.dinosaur) {
-    context.response.body = "No dinosaur name provided.";
-  }
-
-  const dinosaur = data.find((item) =>
-    item.name.toLowerCase() === context.params.dinosaur.toLowerCase()
-  );
-
-  context.response.body = dinosaur ? dinosaur : "No dinosaur found.";
-});
+//No data -- for now.
+router.get("/api/dredmor", () => {});
 
 const app = new Application();
 app.use(oakCors());

@@ -1,5 +1,6 @@
 .react-tabs {
   -webkit-tap-highlight-color: transparent;
+  background: #f0e8dd url("./assets/gaslamp-palepaper-background.jpg");
 }
 
 .react-tabs__tab-list {
@@ -20,7 +21,7 @@
 }
 
 .react-tabs__tab--selected {
-  background: #fff;
+  background: #d88139 url("./assets/gaslamp-palepaper-background.jpg");
   border-color: #aaa;
   color: black;
   border-radius: 5px 5px 0 0;
@@ -36,13 +37,13 @@
 }
 
 .react-tabs__tab:focus:after {
-  content: '';
+  content: "";
   position: absolute;
   height: 5px;
   left: -4px;
   right: -4px;
   bottom: -5px;
-  background: #fff;
+  background: #ffffff00;
 }
 
 .react-tabs__tab-panel {
