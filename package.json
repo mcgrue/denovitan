@@ -7,7 +7,7 @@
     "dev": "deno task dev:backend & deno task dev:app & deno task dev:vite",
     "dev:backend": "deno run --allow-env --allow-read --allow-net backend/main.ts",
     "dev:vite": "deno run -A npm:vite",
-    "dev:app": "deno run --allow-ffi --allow-env --allow-write --allow-read --allow-net app/shell.ts",
+    "dev:app": "deno run --inspect --allow-ffi --allow-env --allow-read --allow-net app/shell.ts",
     "build": "tsc -b && vite build",
     "serve": "deno task build && deno task dev:backend",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
