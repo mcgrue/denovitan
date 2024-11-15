@@ -10,7 +10,10 @@ export const getFirstAvailablePort = async (
   const isPortAvailable = (port: number): Promise<boolean> => {
     return new Promise((resolve) => {
       const server = createServer();
-      server.once("error", () => resolve(false));
+      server.once("error", () => {
+        console.warn(`[${Deno.pid}] Port ${port} is not available`);
+        resolve(false);
+      });
       server.once("listening", () => {
         server.close(() => resolve(true));
       });
