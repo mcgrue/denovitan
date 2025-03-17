@@ -13,7 +13,7 @@ const showWebview = (url: string, windowTitle: string) => {
 };
 
 try {
-  const content = await readFileContents(".port");
+  const content = await readFileContents(".port_frontend");
   console.log(`Port: ${content}`);
 
   showWebview(`http://localhost:${content}`, "Deno Webview");
