@@ -1,12 +1,12 @@
 {
-	"name": "tutorial-with-react",
+	"name": "Denovitan",
 	"private": true,
 	"version": "0.0.0",
 	"type": "module",
 	"scripts": {
 		"dev": "deno task dev:backend & deno task dev:app & deno task dev:vite",
 		"dev:backend": "deno run --allow-all backend/main.ts",
-		"dev:vite": "deno run -A npm:vite",
+		"dev:frontend": "deno run -A npm:vite",
 		"dev:app": "deno run --allow-all app/shell.ts",
 		"dev:app-inspect": "deno run --allow-all --inspect=127.0.0.1:9229 app/shell.ts",
 		"build": "vite build",
