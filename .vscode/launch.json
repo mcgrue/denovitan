@@ -1,0 +1,21 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Deno Test Debug - f5 on a specific test",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "deno",
+      "runtimeArgs": [
+        "test",
+        "--inspect-brk",
+        "--allow-read",
+        "--allow-write",
+        "--allow-net",
+        "${file}"
+      ],
+      "attachSimplePort": 9229,
+      "console": "integratedTerminal"
+    }
+  ]
+}
