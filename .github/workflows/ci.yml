@@ -43,26 +43,8 @@ jobs:
         run: "yarn test"
 
       - name: Fail if there are any .ts or .tsx files in the project without a .test.ts or .test.tsx file
-        run: |
-            # Find all .ts and .tsx files, excluding node_modules and dist
-            files=$(find . -type f \( -name "*.ts" -o -name "*.tsx" \) -not -path "./node_modules/*" -not -path "./dist/*")
-            
-            # Check each file for a corresponding test file
-            for file in $files; do
-              # Skip if it's already a test file
-              if [[ $file =~ \.test\.(ts|tsx)$ ]]; then
-                continue
-              fi
-              
-              # Construct the expected test file path
-              test_file="${file%.*}.test.${file##*.}"
-              
-              # Check if test file exists
-              if [ ! -f "$test_file" ]; then
-                echo "Error: No test file found for $file"
-                exit 1
-              fi
-            done
+        shell: pwsh
+        run: ./scripts/check-test-files.ps1
 
       # - name: Upload to Deno Deploy
       #   uses: denoland/deployctl@v1
