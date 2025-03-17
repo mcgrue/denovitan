@@ -11,6 +11,23 @@ if (Test-Path ".gitignore") {
 $noTestPatterns = @()
 if (Test-Path ".no-test.json") {
     $noTestPatterns = Get-Content ".no-test.json" | ConvertFrom-Json
+    
+    # Validate that all files in .no-test.json exist
+    $missingNoTestFiles = @()
+    foreach ($pattern in $noTestPatterns) {
+        if (-not (Test-Path $pattern)) {
+            $missingNoTestFiles += $pattern
+        }
+    }
+    
+    if ($missingNoTestFiles.Count -gt 0) {
+        Write-Host "The following files in .no-test.json do not exist:"
+        foreach ($file in $missingNoTestFiles) {
+            Write-Host "  $file"
+        }
+        Write-Error "Please remove non-existent files from .no-test.json"
+        exit 1
+    }
 }
 
 # Convert .gitignore patterns to regex patterns
