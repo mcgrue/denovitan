@@ -17,5 +17,12 @@
       "attachSimplePort": 9229,
       "console": "integratedTerminal"
     }
+  ],
+  "compounds": [
+    {
+      "name": "Start All Dev Servers",
+      "configurations": [],
+      "preLaunchTask": "start-dev-servers"
+    }
   ]
 }

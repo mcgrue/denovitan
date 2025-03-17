@@ -1,0 +1,47 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "start-dev-servers",
+      "dependsOrder": "parallel",
+      "dependsOn": [
+        "start-backend",
+        "start-frontend",
+        "start-app"
+      ]
+    },
+    {
+      "label": "start-backend",
+      "type": "shell",
+      "command": "yarn dev:backend",
+      "presentation": {
+        "group": "dev-servers",
+        "panel": "dedicated",
+        "reveal": "always"
+      },
+      "isBackground": true
+    },
+    {
+      "label": "start-frontend",
+      "type": "shell",
+      "command": "yarn dev:frontend",
+      "presentation": {
+        "group": "dev-servers",
+        "panel": "dedicated",
+        "reveal": "always"
+      },
+      "isBackground": true
+    },
+    {
+      "label": "start-app",
+      "type": "shell",
+      "command": "yarn dev:app",
+      "presentation": {
+        "group": "dev-servers",
+        "panel": "dedicated",
+        "reveal": "always"
+      },
+      "isBackground": true
+    }
+  ]
+}
