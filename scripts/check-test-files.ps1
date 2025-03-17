@@ -7,6 +7,12 @@ if (Test-Path ".gitignore") {
     }
 }
 
+# Read .no-test.json patterns
+$noTestPatterns = @()
+if (Test-Path ".no-test.json") {
+    $noTestPatterns = Get-Content ".no-test.json" | ConvertFrom-Json
+}
+
 # Convert .gitignore patterns to regex patterns
 $regexPatterns = $gitignorePatterns | ForEach-Object {
     $pattern = $_.Trim()
@@ -35,6 +41,11 @@ $files = Get-ChildItem -Recurse -Include "*.ts","*.tsx" -Exclude "*.test.ts","*.
                 $isIgnored = $true
                 break
             }
+        }
+        
+        # Check if file is in .no-test.json
+        if (-not $isIgnored -and $noTestPatterns -contains $relativePath) {
+            $isIgnored = $true
         }
         
         -not $isIgnored
