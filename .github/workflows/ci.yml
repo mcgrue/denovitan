@@ -18,6 +18,11 @@ jobs:
       - name: Clone repository
         uses: actions/checkout@v4
 
+      - name: Create port files
+        run: |
+          echo "8025" > .port_backend
+          echo "5000" > .port_frontend
+
       - name: Install Deno
         uses: denoland/setup-deno@v1
         with:
