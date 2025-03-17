@@ -44,12 +44,25 @@ jobs:
 
       - name: Fail if there are any .ts or .tsx files in the project without a .test.ts or .test.tsx file
         run: |
-            offenders=$(find . -path ./node_modules -prune -o -path ./dist -prune -o -name '*.ts' -o -name '*.tsx' | grep -v '\.test\.ts\?$')
-            if [ -n "$offenders" ]; then
-              echo "Error: The following .ts or .tsx files do not have a corresponding .test.ts or .test.tsx file:"
-              echo "$offenders"
-              exit 1
-            fi
+            # Find all .ts and .tsx files, excluding node_modules and dist
+            files=$(find . -type f \( -name "*.ts" -o -name "*.tsx" \) -not -path "./node_modules/*" -not -path "./dist/*")
+            
+            # Check each file for a corresponding test file
+            for file in $files; do
+              # Skip if it's already a test file
+              if [[ $file =~ \.test\.(ts|tsx)$ ]]; then
+                continue
+              fi
+              
+              # Construct the expected test file path
+              test_file="${file%.*}.test.${file##*.}"
+              
+              # Check if test file exists
+              if [ ! -f "$test_file" ]; then
+                echo "Error: No test file found for $file"
+                exit 1
+              fi
+            done
 
       # - name: Upload to Deno Deploy
       #   uses: denoland/deployctl@v1
