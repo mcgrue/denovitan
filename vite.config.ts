@@ -18,7 +18,6 @@ const backendPortFile = await readFileContents(BACKEND_PORT_FILE);
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  // @ts-ignore: ts(2769)
   plugins: [react()],
   server: {
     port: our_port, // Change this to your desired port
@@ -29,4 +28,7 @@ export default defineConfig({
       },
     },
   },
+  build: {
+    sourcemap: true
+  }
 });
