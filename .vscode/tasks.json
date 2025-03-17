@@ -19,7 +19,21 @@
         "panel": "dedicated",
         "reveal": "always"
       },
-      "isBackground": true
+      "isBackground": true,
+      "problemMatcher": {
+        "pattern": {
+          "regexp": "^\\[\\d+\\] found available backend port: (\\d+)$",
+          "file": 1,
+          "location": 2,
+          "message": 3
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": ".",
+          "endsPattern": "^\\[\\d+\\] Starting Deno-Vite Server running on http://localhost:\\d+",
+          "timeout": 20000
+        }
+      }
     },
     {
       "label": "start-frontend",
