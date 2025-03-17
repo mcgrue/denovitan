@@ -1,36 +1,36 @@
 {
-  "name": "tutorial-with-react",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "deno task dev:backend & deno task dev:app & deno task dev:vite",
-    "dev:backend": "deno run --allow-all backend/main.ts",
-    "dev:vite": "deno run -A npm:vite",
-    "dev:app": "deno run --allow-all app/shell.ts",
-    "// TODO make some sort of die-on-9229-collision or a script that finds and replaces a good open port (and announces it with a system dialog if it's non-standard": "",
-    "dev:app-inspect": "deno run --allow-all --inspect=127.0.0.1:9229 app/shell.ts",
-    "// build": "tsc -b && vite build",
-    "build": "vite build",
-    "serve": "deno task build && deno task dev:backend",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-router-dom": "^6.26.2"
-  },
-  "devDependencies": {
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
-    "@typescript-eslint/eslint-plugin": "^7.15.0",
-    "@typescript-eslint/parser": "^7.15.0",
-    "@vitejs/plugin-react": "^4.3.1",
-    "eslint": "^8.57.0",
-    "eslint-plugin-react-hooks": "^4.6.2",
-    "eslint-plugin-react-refresh": "^0.4.7",
-    "typescript": "^5.2.2",
-    "vite": "^5.3.4"
-  }
+	"name": "tutorial-with-react",
+	"private": true,
+	"version": "0.0.0",
+	"type": "module",
+	"scripts": {
+		"dev": "deno task dev:backend & deno task dev:app & deno task dev:vite",
+		"dev:backend": "deno run --allow-all backend/main.ts",
+		"dev:vite": "deno run -A npm:vite",
+		"dev:app": "deno run --allow-all app/shell.ts",
+		"dev:app-inspect": "deno run --allow-all --inspect=127.0.0.1:9229 app/shell.ts",
+		"build": "vite build",
+		"serve": "deno task build && deno task dev:backend",
+		"lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+		"preview": "vite preview",
+		"test": "deno test --allow-read --allow-write --allow-net",
+		"test:debug": "deno test --inspect-brk --allow-read --allow-write --allow-net"
+	},
+	"dependencies": {
+		"react": "^18.3.1",
+		"react-dom": "^18.3.1",
+		"react-router-dom": "^6.26.2"
+	},
+	"devDependencies": {
+		"@types/react": "^18.3.3",
+		"@types/react-dom": "^18.3.0",
+		"@typescript-eslint/eslint-plugin": "^7.15.0",
+		"@typescript-eslint/parser": "^7.15.0",
+		"@vitejs/plugin-react": "^4.3.1",
+		"eslint": "^8.57.0",
+		"eslint-plugin-react-hooks": "^4.6.2",
+		"eslint-plugin-react-refresh": "^0.4.7",
+		"typescript": "^5.2.2",
+		"vite": "^5.3.4"
+	}
 }
