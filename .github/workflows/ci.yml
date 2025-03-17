@@ -40,7 +40,7 @@ jobs:
         run: "deno task build"
       
       - name: Test step
-        run: "deno test --allow-read --allow-net"
+        run: "yarn test"
 
       - name: Fail if there are any .ts or .tsx files in the project without a .test.ts or .test.tsx file
         run: |
