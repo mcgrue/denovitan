@@ -9,6 +9,5 @@
 	"frontend/main.tsx",
 	"frontend/types.ts",
 	"frontend/vite-env.d.ts",
-	"vite.config.ts",
-	"foo.bar.ts"
+	"vite.config.ts"
 ]
