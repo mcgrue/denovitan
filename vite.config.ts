@@ -1,13 +1,13 @@
-import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import { defineConfig } from "vite";
+import { BACKEND_PORT_FILE } from "./backend/constants.ts";
 import {
-  createFileWithContent,
-  deleteFileIfExists,
-  readFileContents,
+	createFileWithContent,
+	deleteFileIfExists,
+	readFileContents,
 } from "./deno-common/file.ts";
 import { getFirstAvailablePort } from "./deno-common/net.ts";
-import { BACKEND_PORT_FILE } from "./backend/constants.ts";
-import { FRONTEND_PORT_FILE } from "./gui/constants.ts";
+import { FRONTEND_PORT_FILE } from "./frontend/constants.ts";
 
 const our_port = await getFirstAvailablePort(5000);
 
@@ -18,14 +18,14 @@ const backendPortFile = await readFileContents(BACKEND_PORT_FILE);
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
-  server: {
-    port: our_port, // Change this to your desired port
-    proxy: {
-      "/api": {
-        target: `http://localhost:${backendPortFile}`,
-        changeOrigin: true,
-      },
-    },
-  },
+	plugins: [react()],
+	server: {
+		port: our_port, // Change this to your desired port
+		proxy: {
+			"/api": {
+				target: `http://localhost:${backendPortFile}`,
+				changeOrigin: true,
+			},
+		},
+	},
 });
