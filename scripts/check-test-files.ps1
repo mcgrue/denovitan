@@ -1,8 +1,43 @@
+# Read .gitignore patterns
+$gitignorePatterns = @()
+if (Test-Path ".gitignore") {
+    $gitignorePatterns = Get-Content ".gitignore" | Where-Object { 
+        # Skip empty lines and comments
+        $_ -and -not $_.StartsWith("#")
+    }
+}
+
+# Convert .gitignore patterns to regex patterns
+$regexPatterns = $gitignorePatterns | ForEach-Object {
+    $pattern = $_.Trim()
+    # Convert .gitignore pattern to regex
+    $pattern = $pattern -replace '\.', '\.'  # Escape dots
+    $pattern = $pattern -replace '\*', '.*'  # Convert * to .*
+    $pattern = $pattern -replace '\?', '.'   # Convert ? to .
+    # Handle directory indicators
+    if ($pattern.EndsWith('/')) {
+        $pattern = $pattern + '.*'
+    }
+    "^.*$pattern.*$"
+}
+
 # Find all .ts and .tsx files, excluding node_modules and dist
 $files = Get-ChildItem -Recurse -Include "*.ts","*.tsx" -Exclude "*.test.ts","*.test.tsx" | 
     Where-Object { 
-        $_.FullName -notlike "*\node_modules\*" -and 
-        $_.FullName -notlike "*\dist\*" 
+        $fullPath = $_.FullName
+        $relativePath = $fullPath.Substring((Get-Location).Path.Length + 1)
+        $relativePath = $relativePath -replace '\\', '/'  # Normalize path separators
+        
+        # Check if file matches any gitignore pattern
+        $isIgnored = $false
+        foreach ($pattern in $regexPatterns) {
+            if ($relativePath -match $pattern) {
+                $isIgnored = $true
+                break
+            }
+        }
+        
+        -not $isIgnored
     }
 
 # Initialize array to store files missing tests
@@ -23,10 +58,9 @@ foreach ($file in $files) {
 if ($missingTests.Count -gt 0) {
     Write-Host "The following files are missing test files:"
     foreach ($file in $missingTests) {
-			Write-Host "  $file"
+        Write-Host "  $file"
     }
-
-		Write-Error "Please add test files for the above files."
+    Write-Error "Please add test files for the above files."
     exit 1
 }
 
