@@ -13,7 +13,7 @@
     {
       "label": "start-backend",
       "type": "shell",
-      "command": "yarn dev:backend",
+      "command": "yarn dev:backend-inspect",
       "presentation": {
         "group": "dev-servers",
         "panel": "dedicated",
@@ -30,8 +30,7 @@
         "background": {
           "activeOnStart": true,
           "beginsPattern": ".",
-          "endsPattern": "^\\[\\d+\\] Starting Deno-Vite Server running on http://localhost:\\d+",
-          "timeout": 20000
+          "endsPattern": "^\\[\\d+\\] Starting Deno-Vite Server running on http://localhost:\\d+"
         }
       }
     },

@@ -16,6 +16,18 @@
       ],
       "attachSimplePort": 9229,
       "console": "integratedTerminal"
+    },
+    {
+      "name": "Attach to Backend",
+      "type": "node",
+      "request": "attach",
+      "port": 9230
+    },
+    {
+      "name": "Attach to App",
+      "type": "node",
+      "request": "attach",
+      "port": 9231
     }
   ],
   "compounds": [
